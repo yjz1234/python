@@ -29,8 +29,6 @@ def conv2d(name,x,W,b,strides=1):
 def maxpool2d(name, x,k=2):
 	return tf.nn.max_pool(x,ksize=[1,k,k,1],strides=[1,k,k,1],padding='SAME',name=name)
 
-def norm(name, l_input, lsize=4):
-	return tf.nn.lrn(l_input, lsize, bias=1.0, alpha=0.001 / 9.0,beta=0.75, name=name)
 weights = {
 	'wc1_1':tf.Variable(tf.random_normal([3,3,1,64])),
 	'wc1_2':tf.Variable(tf.random_normal([3,3,64,64])),

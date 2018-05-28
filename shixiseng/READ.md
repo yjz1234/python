@@ -1,1 +1,1 @@
-![Imagetext](https://raw.github.com/yjz1234/python/shixiseng/2.jpg)
+![Imagetext](https://github.com/yjz1234/python/shixiseng/2.JPG)

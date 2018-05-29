@@ -49,7 +49,7 @@
 	`>		xml_re = r'<map code="(.*)" name="'+i+'"/>'`<br>
 	`>		code = re.search(xml_re,str(content)).group(1)`<br>
 	`>		co = code.replace('0x','&#x')`<br>
-	`>		codes[co] = chr(int(n,16))<br>
+	`>		codes[co] = chr(int(n,16))'<br>
 12.如图:<br>
 	![Imagetext](https://raw.githubusercontent.com/yjz1234/python/master/img_folder/shixiseng/6.JPG)<br>
 	

@@ -6,7 +6,7 @@
 1.先打开网页看一看源代码：<br>
 	>![Imagetext](https://raw.githubusercontent.com/yjz1234/python/master/shixiseng/3.JPG)<br>
 	发现代码是这样的，那么正则就可以写了<br>
-	>name = r'data-desc="search-职位名称">(.*?)</a>'<br>
+	`>name = r'data-desc="search-职位名称">(.*?)</a>'`<br>
 	其他的类似。<br>
 	
 2.然后试着爬取一下，发现结果是这样的:<br>
@@ -17,20 +17,20 @@
 	
 3.还原字体：<br>
 	将base64的字符获取<br>
-	>base64 = r'base64,(.*?)"\)}'<br>
-	>base64_code = re.findall(base64,str(response))<br>
-	>base_str = base64_code[0]<br>
+	`>base64 = r'base64,(.*?)"\)}'`<br>
+	`>base64_code = re.findall(base64,str(response))`<br>
+	`>base_str = base64_code[0]<br>`
 	将获取到的字符用base64解码并保存到字体文件<br>
-	>base = base64.b64decode(base_str)<br>
-	>print(base_str)<br>
-	>with open('f.ttf','wb') as f:<br>
-	>	f.write(base)<br>
-	>	f.close()<br>
+	`>base = base64.b64decode(base_str)`<br>
+	`>print(base_str)`<br>
+	`>with open('f.ttf','wb') as f:`<br>
+	`>	f.write(base)`<br>
+	`>	f.close()`<br>
 	打开字体文件看一看,用fonttools工具<br>
-	>from fontTools.ttLib import TTFont<br>
-	>font = TTFont('f.ttf')<br>
-	>font.saveXML('f.xml')<br>
-	>font_list = font.getGlyphOrder()<br>
+	`>from fontTools.ttLib import TTFont`<br>
+	`>font = TTFont('f.ttf')`<br>
+	`>font.saveXML('f.xml')`<br>
+	`>font_list = font.getGlyphOrder()`<br>
 	>这里把字体保存到xml文件，并且获得了一个list，是字体里面的编码:<br>
 	这是xml的重点对象，显示了编码与字体的映射关系<br>
 	>![Imagetext](https://raw.githubusercontent.com/yjz1234/python/master/shixiseng/5.JPG)
@@ -38,18 +38,18 @@
 	>![Imagetext](https://raw.githubusercontent.com/yjz1234/python/master/shixiseng/7.JPG)
 	字体解码，实习僧并没有难为我们，很简单的转换<br>
 	然后实验发现'uni30'编码去掉uni变成30，转变成10进制，再变成字符<br>
-	>chr(int('30'))<br>
-	>0<br>
+	`>chr(int('30'))`<br>
+	`>0`<br>
 	用正则获取xml里面的映射关系，并表示为字典:<br>
-	>codes = {}<br>
-	>with open('f.xml','r') as f:<br>
-	>	content = f.read()<br>
-	>	for i in font_list:<br>
-	>		n = i.replace('uni','')<br>
-	>		xml_re = r'<map code="(.*)" name="'+i+'"/>'<br>
-	>		code = re.search(xml_re,str(content)).group(1)<br>
-	>		co = code.replace('0x','&#x')<br>
-	>		codes[co] = chr(int(n,16))<br>
+	`>codes = {}`<br>
+	`>with open('f.xml','r') as f:`<br>
+	`>	content = f.read()`<br>
+	`>	for i in font_list:`<br>
+	`>		n = i.replace('uni','')`<br>
+	`>		xml_re = r'<map code="(.*)" name="'+i+'"/>'`<br>
+	`>		code = re.search(xml_re,str(content)).group(1)`<br>
+	`>		co = code.replace('0x','&#x')`<br>
+	`>		codes[co] = chr(int(n,16))<br>
 	如图:<br>
 	>![Imagetext](https://raw.githubusercontent.com/yjz1234/python/master/shixiseng/6.JPG)<br>
 	

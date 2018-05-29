@@ -1,1 +1,0 @@
-![Imagetext](https://github.com/yjz1234/python/shixiseng/2.JPG)

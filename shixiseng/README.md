@@ -36,7 +36,7 @@
 	![Imagetext](https://raw.githubusercontent.com/yjz1234/python/master/img_folder/shixiseng/5.JPG)
 <br>9.这是字体的list列表<br>
 	![Imagetext](https://raw.githubusercontent.com/yjz1234/python/master/img_folder/shixiseng/7.JPG)
-0.字体解码，实习僧并没有难为我们，很简单的转换<br>
+10.字体解码，实习僧并没有难为我们，很简单的转换<br>
 	然后实验发现'uni30'编码去掉uni变成30，转变成10进制，再变成字符<br>
 	`>chr(int('30'))`<br>
 	`>0`<br>

@@ -7,6 +7,7 @@ class database:
 		self.host = host
 		self.username = username
 		self.password = password
+		self.conn=None
 		self.cursor = None
 
 	#定义一个函数获取游标,连接数据库
@@ -18,6 +19,7 @@ class database:
 			charset = "utf8",
 			use_unicode = True
 		)
+		self.conn=my_conn
 		self.cursor=my_conn.cursor()
 	#功能:创建数据库
 	def create_database(self,database):
@@ -67,3 +69,10 @@ class database:
 	#功能：改变字段
 	def alter_table_modify(self,table_name,modify,data_type=''):
 		self.execute('ALTER TABLE %s MODIFY %s %s;'%(table_name,modify,data_type))
+		
+	#退出
+	def quit(self):
+		self.conn.commit()
+		self.cursor.close()
+		self.conn.close()
+		
